@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" >
+  <h1 style="float: right">Verify your email Here</h1>
+</nav>
+
+<div  class ="card-place" style="padding-right: 20%; padding-left: 20%">
+  <mdb-card style="flex: auto; justify-content: center">
+    <mdb-card-body>
+      <div class="authBlock">
+        <h3>Thank You for Registering!</h3>
+
+        <div class="formGroup" *ngIf="firebaseService.data as user">
+          <p class="text-center">We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
+          <p class="text-center">Please check your email and click on the link to verfiy your email address.</p>
+        </div>
+        <div class="formGroup">
+          <button class="btn" (click)="firebaseService.SendVerificationEmail()">
+            Resend Verification Email
+          </button>
+        </div>
+      </div>
+      <hr/>
+     <span> <p> OR </p> <button class="btn" routerLink ="/login" routerLinkActive="true"> Sign in </button></span>
+    </mdb-card-body>
+  </mdb-card>
+</div>
+
+

@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" >
+  <h1 style="float: right">Login Here</h1>
+</nav>
+
+
+<div  class ="card-place" >
+  <mdb-card style="padding-left: 37%; padding-right: 37%; padding-bottom: 24.5%; padding-top: 2%">
+  <mdb-card style="padding: 2%; flex: auto; justify-content: center">
+    <mdb-card-title style="padding: 2%;"><strong>LOGIN</strong></mdb-card-title>
+    <mdb-card-body>
+      <form>
+        <div>
+          <input class="form-control mr-sm-2" type="text" placeholder="Email"  name="title" #email >
+        </div>
+        <br/>
+        <div>
+          <input class="form-control mr-sm-2" type="password" placeholder="Password"  name="title" #password >
+        </div>
+        <br/>
+      </form>
+      <button style="align-content: center" class="btn" (click)="logInUser(email.value, password.value)">Sign in</button>
+      <div style="color: red" *ngIf="accountErrorMessage">{{ accountErrorMessage }}</div><hr>
+       <div>
+          <button class="btn" (click)="firebaseService.googleSignin()">Sign in with google</button>
+      </div>
+
+      <br/> <br/>
+      <div>
+        <button class="btn" routerLink ="/register" routerLinkActive="true">Sign up</button>
+        <button style="float: right;" class="btn" routerLink ="/landing" routerLinkActive="true">Home</button>
+      </div>
+
+
+    </mdb-card-body>
+  </mdb-card>
+  </mdb-card>
+</div>
+

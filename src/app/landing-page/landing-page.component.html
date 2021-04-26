@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Social</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login" routerLinkActive="active">Sign In</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-6" placeholder="Search" [(ngModel)]="text" [ngModelOptions]="{standalone: true}"  (input)="Search()" type="text">
+    </form>
+  </div>
+</nav>
+<mdb-card style="padding: 1%;">
+  <mdb-card class="my-2" *ngFor="let post of posts">
+    <h3 style="padding: 0.5%"> <img [src]="post.profilePictureURL" *ngIf="post?.profilePictureURL" alt="Avatar" class="avatar"> <strong style="padding: 1%">{{post.ownerName}}</strong> <span style="float: right">{{post?.time?.seconds * 1000 | date: 'shortDate'}} {{post?.time?.seconds * 1000 | date: 'shortTime'}}</span> </h3>
+    <hr/>
+    <p style="padding: 1%; font-family: Arial;">{{post.message}}</p>
+    <div class="imageBody">
+      <img [src]="post.postFileUrl" >
+    </div>
+    <mdb-card-footer>
+      <input type="submit" value="Like" class="btn" style="color: dodgerblue; float: left">
+    </mdb-card-footer>
+  </mdb-card>
+</mdb-card>
+

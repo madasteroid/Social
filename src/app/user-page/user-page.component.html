@@ -1,0 +1,79 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"><Strong>Social</Strong></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login" (click)="firebaseService.Logout()">Log Out</a>
+      </li>
+      <li class="nav-item">
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-6" placeholder="Search" [(ngModel)]="text" [ngModelOptions]="{standalone: true}"  (input)="Search()" type="text">
+        </form>
+      </li>
+    </ul>
+    <div style="padding-right: 1%">
+      {{user.email}}
+    </div>
+    <img [src]="user.photoUrl" *ngIf="user?.photoUrl" alt="Avatar" class="avatar">
+  </div>
+</nav>
+<mdb-card style="padding: 2%;">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-body">
+          <label class="hoverable" for="fileInput">
+            <img [src]="user.photoUrl" *ngIf="user?.photoUrl" class="changePicture">
+            <p style="font-family: Arial"><strong>Here goes info/about.. easy to retrieve</strong></p>
+            <div class="hover-text">Change Picture</div>
+            <div class="background"></div>
+          </label>
+          <br/>
+          <input id="fileInput" type='file' (change)="upload($event)" hidden>
+          <!--<input fxLayoutAlign="center center" type="file" value="Change Image" class="btn" style="color: dodgerblue; float: left" (change)="upload($event)">-->
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Create Post</h2>
+          <form #form="ngForm" (ngSubmit)="postMessage(form)">
+            <textarea type="text" id="form7" class="md-textarea md-textarea-auto form-control" mdbInput ngModel placeholder="What do you want to post?"  name="message" required="required"></textarea>
+            <input type='file' (change)="uploadPostFile($event)">
+            <br/>
+            <input type="submit" value="Post" class="btn" style="color: dodgerblue; float: right">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr/>
+  <mdb-card class="my-2" *ngFor="let post of posts">
+      <h4 style="padding: 0.5%"> <img [src]="user.photoUrl" *ngIf="user?.photoUrl" alt="Avatar" class="avatar"><strong style="padding: 1%">{{post.ownerName}}</strong>
+        <span style="float: right">{{post?.time?.seconds * 1000 | date: 'shortDate'}} {{post?.time?.seconds * 1000 | date: 'shortTime'}}</span>
+      </h4>
+      <hr/>
+      <p style="padding: 0.5%; font-family: Arial">{{post.message}}</p>
+    <div class="imageBody">
+      <img [src]="post.postFileUrl" >
+    </div>
+
+      <mdb-card-footer>
+        <input type="submit" value="Like" class="btn" style="color: dodgerblue; float: left">
+        <input type="submit" value="Delete" class="btn" style="color: dodgerblue; float: right" (click)="deletePostUser(post)">
+      </mdb-card-footer>
+    </mdb-card>
+  </mdb-card>
+
+
+
