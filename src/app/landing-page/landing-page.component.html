@@ -25,9 +25,12 @@
 </nav>
 <mdb-card style="padding: 1%;">
   <mdb-card class="my-2" *ngFor="let post of posts">
-    <h3 style="padding: 0.5%"> <img [src]="post.profilePictureURL" *ngIf="post?.profilePictureURL" alt="Avatar" class="avatar"> <strong style="padding: 1%">{{post.ownerName}}</strong> <span style="float: right">{{post?.time?.seconds * 1000 | date: 'shortDate'}} {{post?.time?.seconds * 1000 | date: 'shortTime'}}</span> </h3>
-    <hr/>
-    <p style="padding: 1%; font-family: Arial;">{{post.message}}</p>
+    <h3 style="padding: 0.5%">
+      <img [src]="post.profilePictureURL" *ngIf="post?.profilePictureURL" alt="Avatar" class="avatar">
+      <strong style="padding: 1%"> {{post.ownerName}} </strong>
+      <span style="float: right">{{post?.time?.seconds * 1000 | date: 'shortDate'}} {{post?.time?.seconds * 1000 | date: 'shortTime'}}</span>
+      <p style="padding: 1%; font-family: Arial;">{{post.message}}</p>
+    </h3>
     <div class="imageBody">
       <img [src]="post.postFileUrl" >
     </div>
